@@ -1,9 +1,9 @@
 const fsPromise = require('fs').promises;
-const { copyFile } = require('./index');
+const { copyFile, transformer } = require('./index');
 
 describe('functions tests', () => {
   beforeAll(() => {
-    return fsPromise.writeFile('./test1.txt', 'testing testing 111');
+    return fsPromise.writeFile('./test1.txt', 'Testing Testing 111');
   });
 
   afterAll(() => {
@@ -19,8 +19,16 @@ describe('functions tests', () => {
         return fsPromise.readFile('./test2.text', { encoding: 'utf8' });
       })
       .then(newFile => {
-        expect(newFile).toEqual('testing testing 111');
+        expect(newFile).toEqual('Testing Testing 111');
         console.log(newFile);
+      });
+  });
+
+  it('tests transformer function', () => {
+    return transformer('./test1.txt')
+      .then(newString => {
+        expect(newString).toEqual('GNITSEGNITSE');
+        console.log(newString);
       });
   });
 });

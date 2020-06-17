@@ -14,10 +14,6 @@ readFile
 fsPromises.writeFile('./write-file.txt', 'oh I can write whatever I want!')
   .then(() => console.log('DONE!'));
 
-// copy a file 
-// having the hardest time wrapping my head around this one, moving on to copy function 
-
-
 // copy function
 
 const copyFile = (src, dst) => {
@@ -25,7 +21,27 @@ const copyFile = (src, dst) => {
     .then(result => fsPromises.writeFile(dst, result));
 };
 
+// transformer
+
+//reversing the string requires a few steps:
+
+const reverseString = (string) => {
+  let step1 = string.split('');
+  let step2 = step1.reverse();
+  let result = step2.join('');
+
+  return result;
+};
+
+const transformer = (source) => {
+  return fsPromises.readFile(source, { encoding: 'utf8' })
+    .then(string => string.replace(/[^a-z]/g, ''))
+    .then(string => string.toUpperCase())
+    .then(string => reverseString(string));
+};
+
 module.exports = {
-  copyFile
+  copyFile,
+  transformer
 };
 
