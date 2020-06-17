@@ -1,12 +1,10 @@
-const { clear } = require('console');
-
 const fsPromises = require('fs').promises;
 
 //read a file
 
-const readAFile = fsPromises.readFile('./README.md', { encoding: 'utf-8' });
+const readFile = fsPromises.readFile('./README.md', { encoding: 'utf-8' });
 
-readAFile
+readFile
   .then(contents => {
     return console.log(contents);
   });
