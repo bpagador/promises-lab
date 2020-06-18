@@ -23,7 +23,7 @@ const copyFile = (src, dst) => {
 
 // transformer
 
-//reversing the string requires a few steps:
+//reversing the string requires a few steps
 
 const reverseString = (string) => {
   let step1 = string.split('');
